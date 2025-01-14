@@ -1,14 +1,41 @@
 const api_url = 'http://127.0.0.1:8000/';
 
-// Função para buscar pacientes
-export async function fetchPacientes() {
-  const url = `${api_url}pacientes`; 
+export async function fetchEspecialidades() {
+  const url = `${api_url}especialidades`; 
   const response = await fetch(url);  
   const data = await response.json();  
   return data;
 }
 
-// Função para buscar médicos
+
+export async function fetchEquipamentos() {
+  const url = `${api_url}equipamentos`; 
+  const response = await fetch(url);  
+  const data = await response.json();
+  return data;
+}
+
+export const fetchProntuarioPacientes = async (id) => {
+  const response = await fetch(`${api_url}pacientes/${id}/prontuario`);
+  const data = await response.json();
+  return data;
+};
+
+
+export async function fetchEnfermarias() {
+  const url = `${api_url}enfermarias`; 
+  const response = await fetch(url);  
+  const data = await response.json();
+  return data;
+}
+
+export const fetchEnfermarias = async (id) => {
+  const response = await fetch(`${api_url}enfermarias/${id}`);
+  const data = await response.json();
+  return data;
+};
+
+
 export async function fetchMedicos() {
   const url = `${api_url}medicos`; 
   const response = await fetch(url);  
@@ -16,61 +43,24 @@ export async function fetchMedicos() {
   return data;
 }
 
-// Função para buscar especialidades de um médico específico
+
+export async function fetchPacientes() {
+  const url = `${api_url}pacientes`; 
+  const response = await fetch(url);  
+  const data = await response.json();  
+  return data;
+}
+
+
 export const fetchMedicoEspecialidades = async (id) => {
   const response = await fetch(`${api_url}medicos/${id}/especialidades`);
   const data = await response.json();
   return data;
 };
 
-// Função para buscar salas de atendimento
-export async function fetchSalas() {
-  const url = `${api_url}salas`; 
-  const response = await fetch(url);  
-  const data = await response.json();
-  return data;
-}
 
-// Função para buscar consultas de um paciente
-export const fetchConsultasPaciente = async (id) => {
-  const response = await fetch(`${api_url}pacientes/${id}/consultas`);
-  const data = await response.json();
-  return data;
-};
-
-// Função para buscar tratamentos de um paciente
-export const fetchTratamentosPaciente = async (id) => {
-  const response = await fetch(`${api_url}pacientes/${id}/tratamentos`);
-  const data = await response.json();
-  return data;
-};
-
-// Função para buscar todos os tratamentos
-export async function fetchTratamentos() {
-  const url = `${api_url}tratamentos`; 
-  const response = await fetch(url);  
-  const data = await response.json();
-  return data;
-};
-
-// Função para buscar agendamentos de exames
-export async function fetchAgendamentos() {
-  const url = `${api_url}agendamentos`; 
-  const response = await fetch(url);  
-  const data = await response.json();
-  return data;
-};
-
-// Função para buscar exames específicos de um paciente
-export const fetchExamesPaciente = async (id) => {
-  const response = await fetch(`${api_url}pacientes/${id}/exames`);
-  const data = await response.json();
-  return data;
-};
-
-// Função para buscar dados de uma sala específica
-export const fetchSala = async (id) => {
-  const response = await fetch(`${api_url}salas/${id}`);
+export const fetchPacientesEnfermarias = async (id) => {
+  const response = await fetch(`${api_url}enfermarias/${id}/pacientes`);
   const data = await response.json();
   return data;
 };

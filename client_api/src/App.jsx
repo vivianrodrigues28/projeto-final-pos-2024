@@ -1,97 +1,61 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Personagens from "./components/personagens";
-import Filmes from "./components/Filmes";
-import Cenarios from "./components/Cenarios";
-import Musicas from "./components/Musicas";
-import Roupas from "./components/Roupas";
-import Acessorios from "./components/Acessorios"
-
+import Especialidades from "./components/Especialidades";
+import Medicos from "./components/Medicos";
+import Enfermarias from "./components/Enfermarias";
+import Prontuarios from "./components/Prontuarios";
+import Pacientes from "./components/Pacientes";
+import Equipamentos from "./components/Equipamentos";
 
 function App() {
+  
   const [paginaAtual, setPaginaAtual] = useState("inicio");
 
+  
   const renderPagina = () => {
     switch (paginaAtual) {
       case "inicio":
-        return <h1>Bem-vindo à aplicação!</h1>;
-      case "personagens":
-        return <Personagens />;
-      case "filmes":
-        return <Filmes />;
-      case "cenarios":
-        return <Cenarios />;
-      case "musicas":
-        return <Musicas />;
-      case "roupas":
-        return <Roupas />;
-      case "acessorios":
-        return <Acessorios />
+        return <h1 className="text-center text-primary">Bem-vindo ao Sistema Hospitalar!</h1>;
+      case "especialidades":
+        return <Especialidades />;
+      case "medicos":
+        return <Medicos />;
+      case "enfermarias":
+        return <Enfermarias />;
+      case "prontuarios":
+        return <Prontuarios />;
+      case "pacientes":
+        return <Pacientes />;
+      case "equipamentos":
+        return <Equipamentos />;
       default:
-        return <h1>Página não encontrada</h1>;
+        return <h1 className="text-danger">Página não encontrada</h1>;
     }
   };
 
+
+  const criarItemMenu = (pagina, label) => (
+    <li className="nav-item">
+      <button
+        className={`nav-link ${paginaAtual === pagina ? "active" : ""}`}
+        onClick={() => setPaginaAtual(pagina)}
+      >
+        {label}
+      </button>
+    </li>
+  );
+
   return (
     <div>
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <button
-            className={`nav-link ${paginaAtual === "inicio" ? "active" : ""}`}
-            onClick={() => setPaginaAtual("inicio")}
-          >
-            Início
-          </button>
-        </li>
-        <li className="nav-item">
-          <button
-            className={`nav-link ${paginaAtual === "personagens" ? "active" : ""}`}
-            onClick={() => setPaginaAtual("personagens")}
-          >
-            Personagens
-          </button>
-        </li>
-        <li className="nav-item">
-          <button
-            className={`nav-link ${paginaAtual === "filmes" ? "active" : ""}`}
-            onClick={() => setPaginaAtual("filmes")}
-          >
-            Filmes
-          </button>
-        </li>
-        <li className="nav-item">
-          <button
-            className={`nav-link ${paginaAtual === "cenarios" ? "active" : ""}`}
-            onClick={() => setPaginaAtual("cenarios")}
-          >
-            Cenários
-          </button>
-        </li>
-        <li className="nav-item">
-          <button
-            className={`nav-link ${paginaAtual === "musicas" ? "active" : ""}`}
-            onClick={() => setPaginaAtual("musicas")}
-          >
-            Músicas
-          </button>
-        </li>
-        <li className="nav-item">
-          <button
-            className={`nav-link ${paginaAtual === "roupas" ? "active" : ""}`}
-            onClick={() => setPaginaAtual("roupas")}
-          >
-            Roupas
-          </button>
-        </li>
-        <li className="nav-item">
-          <button
-            className={`nav-link ${paginaAtual === "acessorios" ? "active" : ""}`}
-            onClick={() => setPaginaAtual("acessorios")}
-          >
-            Acessórios
-          </button>
-        </li>
+      <ul className="nav nav-tabs bg-light">
+        {criarItemMenu("inicio", "Início")}
+        {criarItemMenu("especialidades", "Especialidades")}
+        {criarItemMenu("medicos", "Médicos")}
+        {criarItemMenu("enfermarias", "Enfermarias")}
+        {criarItemMenu("prontuarios", "Prontuários")}
+        {criarItemMenu("pacientes", "Pacientes")}
+        {criarItemMenu("equipamentos", "Equipamentos")}
       </ul>
       <div className="container mt-4">{renderPagina()}</div>
     </div>
